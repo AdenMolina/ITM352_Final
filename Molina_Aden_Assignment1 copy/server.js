@@ -1,7 +1,7 @@
 /*
 Author: Aden Molina
-Date: 17 November 2021
-Description: This is the script for the server which handles incoming requests through the various routes. 
+Date: 01 March 2021
+Description: This is the script for the server which handles incoming requests through the various routes. It will display the products, process and display invoice, as well as, data validation and inventory tracker. 
 */
 
 var express = require('express');
@@ -36,9 +36,9 @@ function isNonNegInt(q, return_errors = false) {
 }
 
 function checkQuantityTextbox(theTextbox) { 
-    errs = isNonNegInt(theTextbox.value, true); 
-    if (errs.length == 0) errs = ['You want:'];
-    if (theTextbox.value.trim() == '') errs = ['Quantity'];
+    errs = isNonNegInt(theTextbox.value, true); //if the value of textbox is true, then it is assigned to errs
+    if (errs.length == 0) errs = ['You want:']; //if the length of errs is equal to 0, then display 'You want:'
+    if (theTextbox.value.trim() == '') errs = ['Quantity']; //if there is no value in the texbox, display 'Quantity:'
     document.getElementById(theTextbox.name + '_label').innerHTML = errs.join(", ");
 }
 
@@ -49,7 +49,7 @@ app.get("/store", function (request, response) {
     var contents = fs.readFileSync('./views/display_products.html', 'utf8');
     response.send(eval('`' + contents + '`')); // render template string
 
-
+// function will display products
     function display_products() {
         str = '';
 
@@ -62,7 +62,7 @@ app.get("/store", function (request, response) {
                     <label id="quantity${i}_label"}">Quantity:</label>
                     <div class="box">
                     <input type="number" placeholder="0"  name="quantity${i}" 
-                     min="0" max="15" onkeyup="checkQuantityTextbox(this); ">
+                     min="1" max="15" onkeyup="checkQuantityTextbox(this); ">
                     </div>
                     <h4>${products_array[i]["total_sold"]} ${products_array[i]["brand"]} have been sold!</h4>
                 </section>
@@ -71,11 +71,7 @@ app.get("/store", function (request, response) {
         return str;
     }
 
-}); 
-            
-            
-
-        
+});   
 //From Assignment1_MVC_server, creates invoice
 app.post("/process_invoice", function (request, response, next) {
     let POST = request.body;
@@ -89,6 +85,7 @@ app.post("/process_invoice", function (request, response, next) {
     var contents = fs.readFileSync('./views/invoice.html', 'utf8');
     response.send(eval('`' + contents + '`')); // render template string
 
+
     function display_invoice_table_rows() { //function to create invoice 
         subtotal = 0; //asume subtotal is zero
         str = ''; 
@@ -101,7 +98,8 @@ app.post("/process_invoice", function (request, response, next) {
                 // product row
                 extended_price =a_qty * products_array[i].price //extended price is a_qty mulitplied by price of producct
                 subtotal += extended_price; // subtotal is equals to subtotal plus extended price
-                products_array[i]['total_sold'] += Number(a_qty); //attribute total sold is equals to number of a_qty plus attribute total sold
+                //adapted from Lab 13, exercise 5
+                products_array[i]['total_sold'] += Number(a_qty); //attribute: total sold is equals to number of a_qty plus attribute: total sold
                 str += (`
       <tr>
         <td width="43%">${products_array[i].brand}</td>
@@ -135,22 +133,9 @@ app.post("/process_invoice", function (request, response, next) {
         
         return str;
     
-
-  
-    
-}
-
-        
-    
-    
+    }
+ 
 });
-
-
-
-
-
-
-
 // route all other GET requests to files in public 
 app.use(express.static('./public'));
 
