@@ -1,0 +1,48 @@
+[
+    {
+        "brand":"Trackstyle Brown Shorts",
+        "price":30, 
+        "image":"/images/MTMbrown.jpg",
+        "type":"Shorts",
+        "quantity": 15
+        
+        
+    },
+    {
+        "brand":"Retro Green Cotton Shorts",
+        "price":30, 
+        "image":"/images/MTMgreen.jpg",
+        "type":"Shorts",
+        "quantity": 15
+        
+        
+    }, 
+    {
+        "brand":"Gildan White Sweatshirt",
+        "price":25, 
+        "image":"/images/sweatshirt.jpeg",
+        "type":"Jacket",
+        "quantity": 15
+        
+        
+    },
+    {
+        "brand":"Uniqlo Short-Sleeve Polo",
+        "price":20, 
+        "image":"/images/polo.jpg",
+        "type":"Polo",
+        "quantity": 15
+        
+        
+    },
+    {
+        "brand":"Uniqlo Chino Pants",
+        "price":50, 
+        "image":"/images/trouser.jpg",
+        "type":"pants",
+        "quantity": 15
+        
+        
+    }
+
+]

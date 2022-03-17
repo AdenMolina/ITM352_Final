@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<title>Footwear by Aden</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link  rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap">
+
+<style>
+  h2,h4,h5,h6 {font-family: 'Cormorant Garamond', serif;
+    color: #0FA3B1;
+    text-align: center;
+}
+
+h1 {font-family: 'Cormorant Garamond', serif; 
+}
+
+h3{font-family: 'Cormorant Garamond', serif;
+    color:darkgreen;
+    text-align: center;
+}
+
+body{font-family: 'Cormorant Garamond', serif;
+    background: #FFFFFF;
+}
+
+main {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+/*Borrowed from Nicholas Badua. Thank you! :-)*/
+header{
+  background-image:url("images/Closet.jpg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+    border: 3px solid #226F54;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    margin: 25px 25px 75px 25px;
+    font-size: 350%;
+    color: #2EC4B6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+img{
+  height:250px;
+  width:250px;
+  border: 3px solid #FFEDD6;
+  display:flex;
+  justify-content: center;
+}
+
+.box{
+  display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+input[type="number"] {
+  width: 120px;
+}
+
+label{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+
+}
+.button{font-family: 'Cormorant Garamond', serif;
+font-size: 15px;
+padding: 10px 25px;
+transition-duration: 0.2s;
+margin-left: 700px;
+margin-top: 50px
+
+}
+/*button hover effects*/
+.button:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: #65a3a0;
+  color: white;
+}
+</style>
+<script>
+  //Data Validation, from Assignment1_MVC_server
+  function isNonNegInt(q, return_errors = false) {
+    errors = []; // assume no errors at first
+    if(q == '') q = 0; // handle blank inputs as if they are 0
+    if (Number(q) != q) errors.push('<font color="red">Not a number!</font>'); //alerts user if value is not a number
+    else if (q < 0) errors.push('<font color="red">Negative value!</font>'); //alerts user if value is negative
+    else if (q > 15) errors.push('<font color="red">Only 15 in stock</font>'); //alerts user if order is too big
+    else if (parseInt(q) != q) errors.push('<font color="red">Not an integer!</font>'); //alerts user if value is not an interger
+    return return_errors ? errors : (errors.length == 0); // return these errors
+}
+
+  function checkQuantityTextbox(theTextbox) {
+      errs = isNonNegInt(theTextbox.value, true);
+      if (errs.length == 0) errs = ['You want:'];
+      if (theTextbox.value.trim() == '') errs = ['Quantity'];
+      document.getElementById(theTextbox.name + '_label').innerHTML = errs.join(", ");
+  }
+  
+                
+  </script>
+
+
+  <br>
+  <header>
+    <h1>Aden's Closet</h1>
+  </header>
+
+<body>
+      <form name="product_selection_form" action="/process_invoice" method="POST">
+        <div>
+              <main>
+                  ${display_products()}
+              </main>
+        </div>
+      </body>
+      
+       
+      <footer>
+        <input type="submit" value="Purchase!" name="purchase_submit" class="button">
+        <h4>Thank you for shopping with us!</h4>
+        <br>
+
+          
+      </footer>
+  </html>
+
+    
