@@ -64,7 +64,9 @@ app.get("/store", function (request, response) {
                     <input type="number" placeholder="0"  name="quantity${i}" 
                      min="1" max="15" onkeyup="checkQuantityTextbox(this); ">
                     </div>
-                    <h4>${products_array[i]["total_sold"]} ${products_array[i]["brand"]} have been sold!</h4>
+                    <div class="Inventory">
+                    <h3>${products_array[i]["total_sold"]} ${products_array[i]["brand"]} have been sold!</h3>
+                    <div>
                 </section>
             `;
         }
@@ -107,7 +109,9 @@ app.post("/process_invoice", function (request, response, next) {
         <td width="13%">\$${products_array[i].price}</td>
         <td width="54%">\$${extended_price}</td>
       </tr>
+      <div class="Inventory">
       <h3>${products_array[i]["total_sold"]} ${products_array[i]["brand"]} have been sold!</h3>
+      <div>
 
       `);
             }
