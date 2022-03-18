@@ -56,7 +56,8 @@ app.get("/store", function (request, response) {
         for (i = 0; i < products_array.length; i++) {
             str += `
                 <section class="item">
-                    <h2>${products_array[i].brand}</h2>
+                    <h2>${products_array[i].album}</h2>
+                    <h3>${products_array[i].artist}</h3>
                     <img src="${products_array[i].image}">
                     <h3>$${products_array[i].price}</h3>
                     <label id="quantity${i}_label"}">Quantity:</label>
@@ -65,8 +66,8 @@ app.get("/store", function (request, response) {
                      min="1" max="15" onkeyup="checkQuantityTextbox(this); ">
                     </div>
                     <div class="Inventory">
-                    <h3>${products_array[i]["total_sold"]} ${products_array[i]["brand"]} have been sold!</h3>
-                    <div>
+                    <h3>${products_array[i]["total_sold"]} ${products_array[i]["album"]} have been sold!</h3>
+                    </div>
                 </section>
             `;
         }
@@ -96,21 +97,20 @@ app.post("/process_invoice", function (request, response, next) {
             if(typeof POST[`quantity${i}`] != 'undefined') { // if statement to see if posted value is not equals to undefined
                 a_qty = POST[`quantity${i}`]; //if it is true, the value is assined to a_qty
             }
-            if (a_qty > 0) { // if statement to see if a_qty is greater than 0
-                // product row
+            if (a_qty > 0) { // if statement to see if a_qty is greater than 0, creates product row
                 extended_price =a_qty * products_array[i].price //extended price is a_qty mulitplied by price of producct
                 subtotal += extended_price; // subtotal is equals to subtotal plus extended price
                 //adapted from Lab 13, exercise 5
                 products_array[i]['total_sold'] += Number(a_qty); //attribute: total sold is equals to number of a_qty plus attribute: total sold
                 str += (`
       <tr>
-        <td width="43%">${products_array[i].brand}</td>
+        <td width="43%">${products_array[i].album}</td>
         <td align="center" width="11%">${a_qty}</td>
         <td width="13%">\$${products_array[i].price}</td>
         <td width="54%">\$${extended_price}</td>
       </tr>
       <div class="Inventory">
-      <h3>${products_array[i]["total_sold"]} ${products_array[i]["brand"]} have been sold!</h3>
+      <h3>${products_array[i]["total_sold"]} ${products_array[i]["album"]} have been sold!</h3>
       <div>
 
       `);

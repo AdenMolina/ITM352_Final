@@ -1,48 +1,61 @@
 [
     {
-        "brand":"Trackstyle Brown Shorts",
+        "album":"Kalapana (1975)",
+        "artist":"Kalapana",
         "price":30, 
-        "image":"/images/MTMbrown.jpg",
+        "image":"/images/kalapana.jpg",
         "type":"Shorts",
         "quantity": 15
         
         
     },
     {
-        "brand":"Retro Green Cotton Shorts",
+        "album":"in the memories of Leslie Cheung (2016)",
+        "artist":"Leslie Cheung",
         "price":30, 
-        "image":"/images/MTMgreen.jpg",
+        "image":"/images/leslie.jpg",
         "type":"Shorts",
         "quantity": 15
         
         
     }, 
     {
-        "brand":"Gildan White Sweatshirt",
+        "album":"Kurnia Dan Pesona (1979)",
+        "artist":"Fariz RM",
         "price":25, 
-        "image":"/images/sweatshirt.jpeg",
+        "image":"/images/fariz.jpg",
         "type":"Jacket",
         "quantity": 15
         
         
     },
     {
-        "brand":"Uniqlo Short-Sleeve Polo",
+        "album":"Casiopea (1978)",
+        "artist":"Casiopea",
         "price":20, 
-        "image":"/images/polo.jpg",
+        "image":"/images/casiopea.jpg",
         "type":"Polo",
         "quantity": 15
         
         
     },
     {
-        "brand":"Uniqlo Chino Pants",
+        "album":"Dreams (2021)",
+        "artist":"Crossing Rain",
         "price":50, 
-        "image":"/images/trouser.jpg",
+        "image":"/images/dreams.jpg",
         "type":"pants",
         "quantity": 15
         
         
+    },
+    {
+        "album":"Breezin' (1976)",
+        "artist":"George Benson",
+        "price":50, 
+        "image":"/images/breezin.jpg",
+        "type":"pants",
+        "quantity": 15
     }
 
 ]

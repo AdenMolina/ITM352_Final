@@ -3,70 +3,80 @@
 <title>Footwear by Aden</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link  rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&family=Staatliches&display=swap" rel="stylesheet">
 
 <style>
-  h2,h4 {font-family: 'Cormorant Garamond', serif;
+  h2,h4 {font-family: 'Rubik', sans-serif;;
     color: #0FA3B1;
     text-align: center;
 }
 
-.Inventory{font-family: 'Cormorant Garamond', serif;
+.Inventory{font-family: 'Rubik', sans-serif;;
     color: #0FA3B1;
     text-align: center;
 
 }
-
-
-h1 {font-family: 'Cormorant Garamond', serif; 
+.item{
+  display: inline-block;
+  width: 32%;
+  border: 3px solid #73AD21;
+  margin: auto;
 }
 
-h3{font-family: 'Cormorant Garamond', serif;
+
+h1 {font-family: 'Staatliches', cursive; 
+}
+
+h3{font-family: 'Rubik', sans-serif;;
     color:darkgreen;
     text-align: center;
 }
+.Inventory{
+  font-size: 60%;
 
-body{font-family: 'Cormorant Garamond', serif;
+}
+
+body{font-family: 'Rubik', sans-serif;;
     background: #FFFFFF;
 }
 
-main {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-}
+
 /*Borrowed from Nicholas Badua. Thank you! :-)*/
 header{
-  background-image:url("images/Closet.jpg");
-  background-position: center; /* Center the image */
+  background-image:url("images/background.jpg");
+  background-position: 25% 35%; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
     border: 3px solid #226F54;
-    grid-column-start: 1;
+    grid-column-start: 5;
     grid-column-end: 4;
     grid-row-start: 1;
     grid-row-end: 3;
     margin: 25px 25px 75px 25px;
     font-size: 350%;
-    color: #2EC4B6;
+    color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
 img{
-  height:250px;
-  width:250px;
+  height:200px;
+  width:200px;
   border: 3px solid #FFEDD6;
-  display:flex;
-  justify-content: center;
+  margin: auto;
+  display: flex;
+
 }
 
 .box{
   display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
+  flex-flow: row wrap;
+  justify-content: space-around;
 }
+
 input[type="number"] {
   width: 120px;
 }
@@ -75,12 +85,16 @@ label{
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-
 }
-.button{font-family: 'Cormorant Garamond', serif;
+main{
+  margin-right: 15px;
+  margin-left: 50px;
+}
+
+.button{font-family: 'Rubik', sans-serif;
 font-size: 15px;
 padding: 10px 25px;
-transition-duration: 0.2s;
+transition-duration: 0.1s;
 margin-left: 700px;
 margin-top: 50px
 
@@ -117,7 +131,7 @@ margin-top: 50px
 
   <br>
   <header>
-    <h1>Aden's Closet</h1>
+    <h1>Aden's CDs</h1>
   </header>
 
 <body>
