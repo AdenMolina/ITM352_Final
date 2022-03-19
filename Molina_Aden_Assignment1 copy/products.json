@@ -1,0 +1,61 @@
+[
+    {
+        "album":"Kalapana (1975)",
+        "artist":"Kalapana",
+        "price":30, 
+        "image":"/images/kalapana.jpg",
+        "type":"Shorts",
+        "quantity": 15
+        
+        
+    },
+    {
+        "album":"in the memories of Leslie Cheung (2016)",
+        "artist":"Leslie Cheung",
+        "price":30, 
+        "image":"/images/leslie.jpg",
+        "type":"Shorts",
+        "quantity": 15
+        
+        
+    }, 
+    {
+        "album":"Kurnia Dan Pesona (1979)",
+        "artist":"Fariz RM",
+        "price":25, 
+        "image":"/images/fariz.jpg",
+        "type":"Jacket",
+        "quantity": 15
+        
+        
+    },
+    {
+        "album":"Casiopea (1978)",
+        "artist":"Casiopea",
+        "price":20, 
+        "image":"/images/casiopea.jpg",
+        "type":"Polo",
+        "quantity": 15
+        
+        
+    },
+    {
+        "album":"Dreams (2021)",
+        "artist":"Crossing Rain",
+        "price":50, 
+        "image":"/images/dreams.jpg",
+        "type":"pants",
+        "quantity": 15
+        
+        
+    },
+    {
+        "album":"Breezin' (1976)",
+        "artist":"George Benson",
+        "price":50, 
+        "image":"/images/breezin.jpg",
+        "type":"pants",
+        "quantity": 15
+    }
+
+]
