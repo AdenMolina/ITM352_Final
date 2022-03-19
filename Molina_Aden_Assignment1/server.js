@@ -62,8 +62,8 @@ app.get("/store", function (request, response) {
                     <h3>$${products_array[i].price}</h3>
                     <label id="quantity${i}_label"}">Quantity:</label>
                     <div class="box">
-                    <input type="number" placeholder="0"  name="quantity${i}" 
-                     min="1" max="15" onkeyup="checkQuantityTextbox(this); ">
+                    <input type="number" placeholder="Enter a Quantity"  name="quantity${i}" 
+                     required min="0" max="15" onkeyup="checkQuantityTextbox(this); ">
                     </div>
                     <div class="Inventory">
                     <h3>${products_array[i]["total_sold"]} ${products_array[i]["album"]} have been sold!</h3>
