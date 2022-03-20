@@ -7,6 +7,8 @@ Description: This is the script for the server which handles incoming requests t
 var express = require('express');
 var myParser = require("body-parser");
 var fs = require('fs');
+var filename = "./user_data.json";
+var queryString = require("query-string");
 
 var products_array = require('./products.json');
 products_array.forEach( (prod,i) => {prod.total_sold = 0});
@@ -140,6 +142,101 @@ app.post("/process_invoice", function (request, response, next) {
     }
  
 });
+app.get("/login", function (request, response) {
+var contents = fs.readFileSync('./views/login.html', 'utf8');
+response.send(eval('`' + contents + '`')); // render template string
+
+
+    function display_login() {
+    str = `
+    <body>
+    <form action="" method="POST">
+    <input type="text" name="username" size="40" placeholder="enter username" ><br />
+    <input type="password" name="password" size="40" placeholder="enter password"><br />
+    <input type="submit" value="Submit" id="submit">
+    </form>
+    </body>
+        `;
+    response.send(str);
+    }
+    });
+    
+    app.post("/login", function (request, response) {
+        // Process login form POST and redirect to logged in page if ok, back to login page if not
+        the_username = request.body['username'].toLowerCase();
+        the_password = request.body['password'];
+        if (typeof users_reg_data[the_username] != 'undefined') {
+            if (users_reg_data[the_username].password == the_password) {
+                response.send(`User ${the_username} is logged in`);
+            } else {
+                response.send(`Wrong password!`);
+            }
+            return;
+        }
+        response.send(`${the_username} does not exist`);
+    });
+    // user info JSON file
+
+
+if (fs.existsSync(filename)) {
+    var stats = fs.statSync(filename);
+    data = fs.readFileSync(filename, 'utf-8');
+    users_reg_data = JSON.parse(data);
+} else {
+    console.log(filename + ' does not exist!');
+    users_reg_data = {};
+}
+
+app.get("/register", function (request, response) {
+// Give a simple register form
+        str = `
+<body>
+<form action="" method="POST">
+<input type="text" name="username" size="40" placeholder="enter username" > 
+${ (typeof errors['no_username'] != 'undefined')?errors['no_username']:''}
+${ (typeof errors['username_taken'] != 'undefined')?errors['username_taken']:''}
+<br />
+<input type="password" name="password" size="40" placeholder="enter password"><br />
+<input type="password" name="repeat_password" size="40" placeholder="enter password again">
+${ (typeof errors['password_mismatch'] != 'undefined')?errors['password_mismatch']:''}
+<br />
+<input type="email" name="email" size="40" placeholder="enter email"><br />
+<input type="submit" value="Submit" id="submit">
+</form>
+</body>
+    `;
+    response.send(str);
+    
+});
+
+app.post("/register", function (request, response) {
+    // process a simple register form
+    username = request.body.username.toLowerCase();
+
+    // check is username taken
+    if(typeof users_reg_data[username] != 'undefined') {
+        errors['username_taken'] = `Hey! ${username} is already registered!`;
+    }
+    if(request.body.password != request.body.repeat_password) {
+        errors['password_mismatch'] = `Repeat password not the same as password!`;
+    } 
+    if(request.body.username == '') {
+        errors['no_username'] = `You need to select a username!`;
+    }
+    if(Object.keys(errors).length == 0) {
+        users_reg_data[username] = {};
+        users_reg_data[username].password = request.body.password;
+        users_reg_data[username].email = request.body.email;
+        fs.writeFileSync(filename, JSON.stringify(users_reg_data));
+        console.log("Saved: " + users_reg_data);
+        response.send(`${username} has been registered.`);
+    } else {
+        response.redirect("./register");
+    }
+});
+
+    
+    var listener = app.listen(8080, () => { console.log('server started listening on port ' + listener.address().port) });
 // route all other GET requests to files in public 
 app.use(express.static('./public'));
 
