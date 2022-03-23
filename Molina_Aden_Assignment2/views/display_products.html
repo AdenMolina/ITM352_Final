@@ -123,7 +123,9 @@ margin-top: 50px
       if (errs.length == 0) errs = ['You want:'];
       if (theTextbox.value.trim() == '') errs = ['Quantity'];
       document.getElementById(theTextbox.name + '_label').innerHTML = errs.join(", ");
-  }           
+  }     
+  
+  
   </script>
 
 
@@ -133,7 +135,6 @@ margin-top: 50px
   </header>
 
 <body>
-      <form name="product_selection_form" action="/process_invoice" method="POST">
         <div>
               <main>
                   ${display_products()}
@@ -143,12 +144,12 @@ margin-top: 50px
       
        
       <footer>
-        <input type="submit" value="Purchase!" name="purchase_submit" onsubmit="display_login()" class="button">
+        <input type="submit" value="Purchase!" name="purchase_submit" class="button">
         <h4>Thank you for shopping with us!</h4>
         <br>
 
           
-      </footer>
+      </footer> 
   </html>
 
     
