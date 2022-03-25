@@ -39,7 +39,7 @@ function isNonNegInt(q, return_errors = false) {
     errors = []; // assume no errors at first
     if(q == '') q = 0; // handle blank inputs as if they are 0
     if (Number(q) != q) errors.push('<font color="red">Not a number!</font>'); //alerts user if value is not a number
-    else if (q < 0) errors.push('<font color="red">Negative value!</font>'); //alerts user if value is negative
+    else if (q <= 0) errors.push('<font color="red">Negative value!</font>'); //alerts user if value is negative
     else if (q > 15) errors.push('<font color="red">Only 15 in stock</font>'); //alerts user if order is too big
     else if (parseInt(q) != q) errors.push('<font color="red">Not an integer!</font>'); //alerts user if value is not an interger
     return return_errors ? errors : (errors.length == 0); // return these errors
@@ -68,14 +68,14 @@ app.get("/store", function (request, response) {
             <form name="product_selection_form" action="" method="POST">
 
                 <section class="item">
-                    <h2>${products_array[i].album}</h2>
-                    <h3>${products_array[i].artist}</h3>
+                <h2>${products_array[i].album}</h2>
                     <img src="${products_array[i].image}">
-                    <h3>$${products_array[i].price}</h3>
+                    <h3>${products_array[i].artist}</h3>
+                    <h4>$${products_array[i].price}</h4>
                     <label id="quantity${i}_label"}">Quantity:</label>
                     <div class="box">
-                    <input type="number" placeholder="Enter a Quantity"  name="${products_array[i].quantity}" 
-                      min="0" max="15" onkeyup="checkQuantityTextbox(this); ">
+                    <input type="number" placeholder="Enter a Quantity"  name="quantity${i}" 
+                    min="0" max="15" onkeyup="checkQuantityTextbox(this);" required  >
                     </div>
                     <div class="Inventory">
                     <h3>${products_array[i]["total_sold"]} ${products_array[i]["album"]} have been sold!</h3>
@@ -90,36 +90,9 @@ app.get("/store", function (request, response) {
 app.post("/store", function (request, response) {
     // Redirect to login page with form data in query string
     let params = new URLSearchParams(request.body);
-   
+    response.redirect('./register?'+ params.toString());
+    //response.send(`${params}`);
 
-   //let product = params.toString();
-
-   //if (typeof params.toString(`quantity${i}`))
-
-   for (i = 0; i < products_array.length; i++) {
-   if (params.has(`${products_array[i].quantity}`)){
-    a_qty = params.get(`${products_array[i].quantity}`);
-    if (a_qty  > 0) {
-        response.redirect('./register?'+ params.toString());
-    }
-    else if (a_qty != 0 ) {
-        response.redirect('./store?'+ params.toString());
-    }
-
-   
-    //response.send(`${a_qty}`)
-
-   }
-}
-   
-
-   
-    
-
-
-    
-    
-    //response.redirect('./register?'+ params.toString());
 });
 
 
@@ -180,22 +153,47 @@ response.send(eval('`' + contents + '`')); // render template string
 
 function display_register(){
         str = `
-<body>
-
-<form action="" method="POST">
-<input type="text" name="username" required minlength="4" maxlength="8" size="40" placeholder="Enter Username" > 
-${ (typeof errors['no_username'] != 'undefined')?errors['no_username']:''}
-${ (typeof errors['username_taken'] != 'undefined')?errors['username_taken']:''}
-<br />
-<input type="password" name="password" required minlength="6" size="40" placeholder="Enter Password"><br />
-<input type="password" name="repeat_password" required minlength="6" size="40" placeholder="Enter Password Again">
-${ (typeof errors['password_mismatch'] != 'undefined')?errors['password_mismatch']:''}
-<br />
-<input type="email" name="email" size="40" placeholder="Enter Email"><br />
-<input type="submit" value="Submit" id="submit">
-<p><b><a href="./login?'+ ${params.toString()}" target="_blank">Got an Account?</a></b></p>
-</form>
-</body>
+        <body>
+        <div class="container">
+          <div class="title">Registration</div>
+          <div class="content">
+          <form action="" method="POST">
+              <div class="user-details">
+                <div class="input-box">
+                  <span class="details">Full Name</span>
+                  <input type="text" name="fullname" required minlength="2" maxlength="30" size="40" placeholder="Enter your Fullname" > 
+                  </div>
+                <div class="input-box">
+                  <span class="details">Username</span>
+                  <input type="text" name="username" required minlength="4" maxlength="8" size="40" placeholder="Enter your Username" > 
+                  ${ (typeof errors['no_username'] != 'undefined')?errors['no_username']:''}
+                  ${ (typeof errors['username_taken'] != 'undefined')?errors['username_taken']:''}
+                </div>
+                <div class="input-box">
+                  <span class="details">Email</span>
+                  <input type="text" placeholder="Enter your email" required>
+                </div>
+                <div class="input-box">
+                  <span class="details">Phone Number</span>
+                  <input type="text" placeholder="Enter your number" required>
+                </div>
+                <div class="input-box">
+                  <span class="details">Password</span>
+                  <input type="password" name="password" required minlength="6" size="40" placeholder="Enter Password"><br />
+                  </div>
+                <div class="input-box">
+                  <span class="details">Confirm Password</span>
+                  <input type="password" name="repeat_password" required minlength="6" size="40" placeholder="Enter Password Again">
+                  ${ (typeof errors['password_mismatch'] != 'undefined')?errors['password_mismatch']:''}
+                </div>
+              </div>
+              </div>
+              <div class="button">
+              <input type="submit" value="Register!" id="submit">
+              <p><a href="./login?'+ ${params.toString()}" target="_self">Got an Account?</a></p>
+              </div>
+              </form>
+              </body>
     `;
 return str;
 }

@@ -5,12 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&family=Staatliches&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;1,500&family=Staatliches&display=swap" rel="stylesheet">
 
 <style>
   h2,h4 {font-family: 'Rubik', sans-serif;
-    color: #0FA3B1;
+    color: #175676;
     text-align: center;
+    font-weight: 1000;
+    font-style: italic;
+  
 }
 
 .Inventory{font-family: 'Rubik', sans-serif;;
@@ -22,7 +25,7 @@
   display: inline-block;
   width: 32%;
   margin: auto;
-  padding-bottom: 10px;
+  
 }
 
 
@@ -30,16 +33,17 @@ h1 {font-family: 'Staatliches', cursive;
 }
 
 h3{font-family: 'Rubik', sans-serif;;
-    color:darkgreen;
+    color: #0A014F;
+   
     text-align: center;
 }
 .Inventory{
   font-size: 60%;
-
 }
 
+
 body{font-family: 'Rubik', sans-serif;;
-    background: #FFFFFF;
+background: linear-gradient(135deg, #ffffff, #ffcea0);
 }
 
 
@@ -75,6 +79,7 @@ img{
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
+
 }
 
 input[type="number"] {
@@ -92,18 +97,33 @@ main{
 }
 
 .button{font-family: 'Rubik', sans-serif;
-font-size: 15px;
-padding: 10px 25px;
-transition-duration: 0.1s;
-margin-left: 680px;
-margin-top: 50px
 
+   border-radius: 5px;
+   border: none;
+   color: #fff;
+   font-size: 18px;
+   font-weight: 500;
+   letter-spacing: .5px;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
 /*button hover effects*/
 .button:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-  background-color: #65a3a0;
   color: white;
+  padding: 7px 10px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  transform: scale(0.99);
+  background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+}
+.moveButton {
+  display: flex;
+   align-items: center;
+  justify-content: center;
+
 }
 </style>
 <script>
@@ -123,7 +143,7 @@ margin-top: 50px
       if (errs.length == 0) errs = ['You want:'];
       if (theTextbox.value.trim() == '') errs = ['Quantity'];
       document.getElementById(theTextbox.name + '_label').innerHTML = errs.join(", ");
-  }     
+  }    
   
   
   </script>
@@ -144,7 +164,9 @@ margin-top: 50px
       
        
       <footer>
+        <div class="moveButton">
         <input type="submit" value="Purchase!" name="purchase_submit" class="button">
+      </div>
         <h4>Thank you for shopping with us!</h4>
         <br>
 
