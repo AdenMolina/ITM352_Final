@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&family=Staatliches&display=swap" rel="stylesheet">
     <style>
-        input[type=text], input[type=password] {
+       input[type=text], input[type=password] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -18,7 +18,20 @@
 }
 h1 {font-family: 'Staatliches', cursive; 
 }
-  
+body{font-family: 'Rubik', sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background: linear-gradient(135deg, #ffffff, #9b59b6);
+}
+.title{
+  font-size: 25px;
+  font-weight: 500;
+  position: relative;
+}
+
   
   /*Borrowed from Nicholas Badua. Thank you! :-)*/
   header{
@@ -32,51 +45,89 @@ h1 {font-family: 'Staatliches', cursive;
       grid-row-start: 1;
       grid-row-end: 3;
       margin: 25px 25px 75px 25px;
-      font-size: 350%;
+      font-size: 300%;
       color: #ffffff;
       display: flex;
       justify-content: center;
       align-items: center;
     }
   
-  img{
-    height:200px;
-    width:200px;
-    border: 3px solid #FFEDD6;
-    margin: auto;
-    display: flex;
-  
-  }
-  
-  .box{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-  }
+    
   
   input[type="submit"] {font-family: 'Rubik', sans-serif;
-  color:#ccc;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
+  height: 200%;
+   width: 100%;
+   border-radius: 5px;
+   border: none;
+   color: #fff;
+   font-size: 18px;
+   font-weight: 500;
+   letter-spacing: 1px;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   background: linear-gradient(135deg, #71b7e6, #9b59b6);
 
 }
 /*button hover effects*/
 input[type="submit"]:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-  background-color: #65a3a0;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
   width: 100%;
+  transform: scale(0.99);
+  background: linear-gradient(-135deg, #71b7e6, #9b59b6);
 }
-
-  
-
+  .container{
+  max-width: 700px;
+  width: 100%;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+.container .title::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 30px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+.content form .user-details{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+}
+form .user-details .input-box{
+  margin-bottom: 15px;
+  width: calc(100% / 2 - 20px);
+}
+form .input-box span.details{
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.user-details .input-box input{
+  height: 45px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+.user-details .input-box input:focus,
+.user-details .input-box input:valid{
+  border-color: #9b59b6;
+}
   </style>
   <header>
     <h1>Aden's CDs</h1>

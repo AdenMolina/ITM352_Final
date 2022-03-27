@@ -58,6 +58,7 @@ function checkQuantityTextbox(theTextbox) {
 app.get("/store", function (request, response) {
     var contents = fs.readFileSync('./views/display_products.html', 'utf8');
     response.send(eval('`' + contents + '`')); // render template string
+    
 
 // function will display products
     function display_products() {
@@ -65,8 +66,7 @@ app.get("/store", function (request, response) {
 
         for (i = 0; i < products_array.length; i++) {
             str += `
-            <form name="product_selection_form" action="" method="POST">
-
+            <form name="product_selection_form" action="/store" method="POST">
                 <section class="item">
                 <h2>${products_array[i].album}</h2>
                     <img src="${products_array[i].image}">
@@ -75,7 +75,7 @@ app.get("/store", function (request, response) {
                     <label id="quantity${i}_label"}">Quantity:</label>
                     <div class="box">
                     <input type="number" placeholder="Enter a Quantity"  name="quantity${i}" 
-                    min="0" max="15" onkeyup="checkQuantityTextbox(this);" required  >
+                    min="0" max="15" onkeyup="checkQuantityTextbox(this);" required   >
                     </div>
                     <div class="Inventory">
                     <h3>${products_array[i]["total_sold"]} ${products_array[i]["album"]} have been sold!</h3>
@@ -91,9 +91,10 @@ app.post("/store", function (request, response) {
     // Redirect to login page with form data in query string
     let params = new URLSearchParams(request.body);
     response.redirect('./register?'+ params.toString());
-    //response.send(`${params}`);
 
 });
+
+
 
 
 
@@ -105,17 +106,33 @@ let params = new URLSearchParams(request.query);
 var contents = fs.readFileSync('./views/login.html', 'utf8');
 response.send(eval('`' + contents + '`')); // render template string
 
-
+//<form action="?${params.toString()}" method="POST">
 
     function display_login() {
     str = `
     <body>
-    <form action="?${params.toString()}" method="POST">
-    <input type="text" name="username" size="40" placeholder="Enter Username" ><br />
-    <input type="password" name="password" size="40" placeholder="Enter Password"><br />
-    <input type="submit" value="Submit" id="submit">
-    </form>
-    </body>
+    <div class="container">
+      <div class="title">Login</div>
+      <div class="content">
+      <form action="?${params.toString()}" method="POST">
+          <div class="user-details">
+            <div class="input-box">
+              <span class="details">Username</span>
+              <input type="text" name="username" required minlength="4" maxlength="8" size="40" placeholder="Enter your Username" > 
+              ${ (typeof errors['no_username'] != 'undefined')?errors['no_username']:''}
+            </div>
+            <div class="input-box">
+              <span class="details">Password</span>
+              <input type="password" name="password" required minlength="6" size="40" placeholder="Enter Password"><br />
+              ${ (typeof errors['wrong_password'] != 'undefined')?errors['wrong_password']:''}
+              </div>
+          </div>
+          </div>
+          <div class="button">
+          <input type="submit" value="Login!" id="submit">
+          </div>
+          </form>
+          </body>
         `;
         return str;
     }
@@ -129,14 +146,16 @@ response.send(eval('`' + contents + '`')); // render template string
         the_password = request.body['password'];
         if (typeof user_data[the_username] != 'undefined') {
             if (user_data[the_username].password == the_password) {
-                response.redirect('./process_invoice?'+ params.toString());
+                response.redirect("./process_invoice"+ "?username=" + the_username + "&" + params.toString());
 
             } else {
-                response.send(`Wrong password!`);
+                errors['wrong_password'] = `Wrong Password!`;
+                response.redirect('./login?'+ params.toString());
             }
             return;
         }
-        response.send(`${the_username} does not exist`);
+        errors['no_username'] = `You need to select a username!`;
+        response.redirect('./login?'+ params.toString());
     });
     // user info JSON file
 
@@ -225,7 +244,7 @@ app.post("/register", function (request, response) {
         user_data[username].email = request.body.email;
         fs.writeFileSync(filename, JSON.stringify(user_data));
         console.log("Saved: " + user_data);
-        response.redirect('./process_invoice?'+ params.toString());
+        response.redirect("./process_invoice"+ "?username=" + username + "&" + params.toString());
 
     } else {
         response.redirect("./register");
@@ -243,11 +262,15 @@ app.get("/process_invoice", function (request, response, next) {
 
     var contents = fs.readFileSync('./views/invoice.html', 'utf8');
     response.send(eval('`' + contents + '`')); // render template string
+    let params = new URLSearchParams(request.query);
+
 
 
     function display_invoice_table_rows() { //function to create invoice 
+        username = request.query['username'];
         subtotal = 0; //asume subtotal is zero
         str = ''; 
+        str += (`<div class="welcome">Hey <b>${username}</b>! Here's your order:</div><br>`);
         for (i = 0; i < products_array.length; i++) {
             a_qty = 0; 
             if(typeof request.query[`quantity${i}`] != 'undefined') { // if statement to see if posted value is not equals to undefined
