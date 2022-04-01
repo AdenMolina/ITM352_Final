@@ -1,6 +1,7 @@
   /*
 Author: Aden Molina
-Description: This is the script for the server which handles incoming requests through the various routes. It will display the products, process and display invoice, as well as, data validation and inventory tracker. 
+Description: This is the script for the server which handles incoming requests through the various routes. It will display the products, process and display invoice, as well as, data validation.
+Code borrowed and modified from Kimberly Matutina, Sean Morris, Brandon Jude, Assignment 3 examples
 */
 
 var express = require('express');
