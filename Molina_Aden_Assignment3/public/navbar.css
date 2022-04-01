@@ -1,0 +1,41 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: linear-gradient(-135deg, #c5bc91, #5994b6);
+    font-family: 'Rubik', sans-serif;
+    text-decoration: none;
+}
+  
+  li {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: auto;
+    margin: auto;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  .toright{
+      float:right;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+    transition: all 0.3s ease;}
+  li a:hover:not(.active) {
+    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+    transition: all 0.3s ease;}
+.active {
+    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+    transition: all 0.3s ease;}
+    

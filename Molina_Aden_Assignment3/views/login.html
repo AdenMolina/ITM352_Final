@@ -1,0 +1,150 @@
+<script>
+  function loadJSON(service, callback) {
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('POST', service, false);
+    xobj.onreadystatechange = function () {
+      if (xobj.readyState == 4 && xobj.status == "200") {
+        // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+        callback(xobj.responseText);
+      }
+    };
+    xobj.send(null);
+  }
+
+  // Load product data
+  var products_data;
+  loadJSON('get_products_data', function (response) {
+    // Parsing JSON string into object
+    allproducts = JSON.parse(response);
+  });
+
+var this_product_key = params.get("product_key");
+var products = allproducts[this_product_key];
+</script>
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&family=Staatliches&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="navbar.css">
+      <script src="./functions.js" type="text/javascript">
+    </script>
+      <script type="text/javascript">
+        navbar();
+      </script>
+    
+    <style>
+      body {
+  margin: 0 auto;
+  background-repeat: repeat;
+  background-position: center;
+  background-size: auto;
+  font-family: 'Rubik', sans-serif;
+  background: linear-gradient(-135deg, #b6dbf3, #dfaff1);
+
+}
+
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+  max-width: 1000px;
+  margin: auto;
+
+
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #e6e6e6;
+  font-family: 'Rubik', sans-serif;
+
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background: #ffffff;
+  outline-width: 5px;
+  outline-color: #ffd900;
+  font-family: 'Rubik', sans-serif;
+
+}
+
+/* Overwrite default styles of hr */
+
+
+/* Set a style for the submit/register button */
+input[type=submit] {
+  font-family: 'Rubik', sans-serif;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: .5px;
+  transition: all 0.4s ease;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+}
+
+input[type=submit]:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    color: white;
+    padding: 7px 10px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    transform: scale(0.99);
+    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+}
+.moveButton {
+  display: flex;
+   align-items: center;
+  justify-content: center;
+
+}
+
+
+/* Set a grey background color and center the text of the "sign in" section */
+header{
+  background-image:url("images/background.jpg");
+  background-position: 25% 35%; 
+  background-repeat: no-repeat; 
+  background-size: cover; 
+  background-position: center;
+    border: 3px solid #2e9e77;
+    font-size: 350%;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Staatliches', cursive; 
+  }
+
+  </style>
+  <header>
+    <h1>Aden's CDs</h1>
+  </header>
+<body>
+    <main>
+        ${display_login()}
+    </main>
+    
+</body>
+</html>

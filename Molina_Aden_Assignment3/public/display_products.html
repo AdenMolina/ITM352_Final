@@ -1,0 +1,162 @@
+<script>
+  // Author: Aden Molina//
+  // This file is my products display page that displays all my products available for purchase // 
+  // Modified code from my assignment 1,2
+  // Borrowed and modified code from Kimberly Matutina, Sean Morris, Brandon Jude
+</script>
+<script src="./functions.js" type="text/javascript">
+  // This links it to my navbar.js
+</script>
+<script>
+var products_data;
+loadJSON('get_products_data', function (response) {
+  // Parsing JSON string into object
+  allproducts = JSON.parse(response);
+});
+let params = (new URL(document.location)).searchParams; // Get data from form to create invoice
+var this_product_key = params.get("product_key");
+var products = allproducts[this_product_key];
+window.onload = function () {
+  if (params.has('submitPurchase')) { // Check if there is qty data to check
+    // Check if all qty are NonNegInt
+    var haserrors = false;
+    var hasquantities = false;
+    for (i = 0; i < products.length; i++) {
+      if (params.has(`quantity${i}`)) {
+        a_qty = params.get(`quantity${i}`); // Gets data from query string
+        // Data from qty text box and put back into text box (sticky)
+        product_form[`quantity${i}`].value = a_qty;
+        checkQuantityTextbox(product_form[`quantity${i}`]);
+        if (isNonNegInt(a_qty) == false) {
+          haserrors = true;
+        }
+        if (a_qty > 0) {
+          hasquantities = true;
+        }
+      }
+    }
+    // If errors, give alert. If no errors, send to invoice with data.
+    if (haserrors) {
+      alert("Please enter valid quantities."); // If user submits with invalid quantites, alert with reason
+    }
+    else if (hasquantities == false) {
+      alert("Please select a product."); // If user submits with 0 quantites, alert with reason
+    }
+    else {
+      location.href = "./login.html" + location.search; // All good, send to login
+    }
+  }
+}
+
+</script>
+<script>
+  function addtocart(prod_index) {
+    console.log({ "prod_type": this_product_key, "prod_index": prod_index, "prod_qty": product_form[`quantity${prod_index}`].value }); // Get value from textbox
+    (async () => { // Borrowed and modified code https://stackoverflow.com/questions/29775797/fetch-post-json-data
+      const rawResponse = await fetch('./add_to_cart', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ "prod_type": this_product_key, "prod_index": prod_index, "prod_qty": product_form[`quantity${prod_index}`].value })
+      });
+      const content = await rawResponse.json();
+
+      alert(content["status"]);
+    })();
+  }
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return false;
+  }
+</script>
+<script>
+  // Took functions (isNonNegInt & checkQuantityTextbox) from Lab 11 & 12, but adjusted to meet my webpage's requirements
+  function isNonNegInt(q, return_errors = false) { // Checks if the values input are a positive integer
+    errors = []; // Initially assumes there are no errors
+    if (q == '') q = 0; // If the input is "blank", set the value to 0 
+    if (Number(q) != q) errors.push('<font color="red">Not a number!</font>'); // Check if string is a number value. If not, send error with reason.
+    else if (q < 0) errors.push('<font color="red">Negative value!</font>'); // Check if string is non-negative. If not, send error with reason.
+    else if (parseInt(q) != q) errors.push('<font color="red">Not an integer</font>'); // Check that it is an integer. If not, send error with reason.
+    return return_errors ? errors : (errors.length == 0);
+  }
+  function checkQuantityTextbox(theTextbox) { // Checks qty txt box using isNonNegInt function
+    errs = isNonNegInt(theTextbox.value, true); // Calls isNonNegInt function
+    document.getElementById(theTextbox.name + '_label').innerHTML = errs.join(", ");
+  }
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta brand="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aden's CDs</title>
+  <link rel="stylesheet" href="display_products.css">
+  <link rel="stylesheet" href="navbar.css">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;1,500&family=Staatliches&display=swap" rel="stylesheet">
+  </script>
+  <script type="text/javascript">
+    //calls navbar
+    navbar();
+  </script>
+</head>
+
+<body>
+  <div class="outline">
+      <header>
+        
+        <h1>Aden's CDs</h1>
+   
+      
+    </div>
+   
+
+  <!-- Opens up form tag that will be used to collect user input to be submitted and used for their invoice-->
+  <form action="/add_to_cart" name="product_form" method="POST">
+    <div>
+      <main>
+        <script>
+          for (i = 0; i < products.length; i++) {
+            document.write(`
+        <section class="item"> 
+          
+        <img src="${products[i].image}">
+      
+        <h2>${products[i].album}</h2> 
+        <h3>${(products[i].artist)}</h3>
+        <h4>$${(products[i].price)}</h4>
+        
+        <p><label>You Want:</label>
+        <div class="move">
+        <input type="text" name="quantity${i}" class="qtytxtbox" value="" onkeyup="checkQuantityTextbox(this);">
+        </div>
+        <h4>Quantity Available:${(products[i].quantity)}</h4>
+        <div class="MoveButton">
+        <div id="quantity${i}_label"> <!-- Allows computer to know which product actions apply to which products -->
+        </div></p>
+        <input type="button" onclick="addtocart(${i});" value="Add to cart" name="submitPurchase" class="add_cart">
+        </section>
+        `);
+          }
+        </script>
+      </main>
+    </div>
+  </form>
+ 
+</body>
+
+</html>

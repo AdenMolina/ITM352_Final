@@ -1,0 +1,129 @@
+<script>
+// Author: Aden Molina //
+  // Modified code from my assignment 1 and assignment 3 //
+  // Borrowed and modified code from Lab 13, 14, Assignment 3 examples + Kimberly Matutina, Sean Morris, Brandon Jude 
+  </script>
+  <script>
+  function loadJSON(service, callback) {
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('POST', service, false);
+    xobj.onreadystatechange = function () {
+      if (xobj.readyState == 4 && xobj.status == "200") {
+        // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+        callback(xobj.responseText);
+      }
+    };
+    xobj.send(null);
+  }
+
+  // Load product data
+  var products_data;
+  loadJSON('get_products_data', function (response) {
+    // Parsing JSON string into object
+    allproducts = JSON.parse(response);
+  });
+</script>
+<script>
+let params = (new URL(document.location)).searchParams;
+var this_product_key = params.get("product_key");
+var products = allproducts[this_product_key];
+      if (params.has('errors')) {
+          fullname.value = params.get('fullname'); // Sticky name
+          username.value = params.get('username'); // Sticky username
+          email.value = params.get('email'); // Sticky email
+          var errors = params.get('errors').split(';');
+          for (error_msg of errors) { 
+              if (error_msg == 'Username taken') {
+                  username_msg.innerHTML = error_msg;
+              }
+              if (error_msg == 'Only letter characters allowed for Full Name') {
+                  name_msg.innerHTML = error_msg;
+              }
+              if (error_msg == 'Full Name must contain Maximum 30 Characters') {
+                  name_msg.innerHTML = error_msg;
+              }
+              if (error_msg == 'Username must contain at least 4 characters and a maximum of 10 characters') {
+                  username_msg.innerHTML = error_msg;
+              }
+              if (error_msg == 'Only Letters And Numbers Allowed for Username') {
+                  username_msg.innerHTML = error_msg;
+              }
+              if (error_msg == 'Must enter a valid email (username@mailserver.domain).') {
+                  email_msg.innerHTML = error_msg;
+              }
+              if (error_msg == 'Password Minimum 6 Characters') {
+                  password_msg.innerHTML = error_msg;
+              }
+              if (error_msg == 'Passwords Do Not Match') {
+                  repeat_password_msg.innerHTML = error_msg;
+              }
+          };
+          alert('Please fix the following error(s):\n' + errors.join('\n')); // If there are any of these error messages, alert and show error next to area of error
+      }
+
+</script>
+  <script src="./functions.js" type="text/javascript">
+      // This links it to my navbar.js
+  </script>  
+  <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+      <link rel="stylesheet" href="register.css">
+      <link rel="stylesheet" href="navbar.css">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;1,500&family=Staatliches&display=swap" rel="stylesheet">
+      <title>Register</title>
+      <script type="text/javascript">
+          navbar();
+      </script>
+  </head>
+  <header>
+    <h1>Aden's CDs</h1>
+  </header>
+  
+  <body>
+      <script>
+          document.write(`
+      <form action="/register?${location.search}" method="POST">`);
+      </script>
+      <div class="container">
+          <h1 style="text-align: center;">Register</h1>
+          <p style="text-align: center;">Please fill in the information below to create an account.</p>
+          <hr>
+          <label for="fullname"><b>Enter First and Last Name</b></label>
+          <span id="name_msg" style="color: red;"></span>
+          <input type="text" placeholder="Enter Full Name" name="fullname" id="fullname" required>
+  
+          <label for="username"><b>Username</b></label>
+          <span id="username_msg" style="color: red;"></span>
+          <input type="text" placeholder="Enter Username" name="username" id="username" required>
+  
+          <label for="email"><b>Email</b></label>
+          <span id="email_msg" style="color: red;"></span>
+          <input type="text" placeholder="Enter Email" name="email" id="email" required>
+  
+          <label for="password"><b>Password</b></label>
+          <span id="password_msg" style="color: red;"></span>
+          <input type="password" placeholder="Enter Password" name="password" id="password" required>
+  
+          <label for="repeat_password"><b>Repeat Password</b></label>
+          <span id="repeat_password_msg" style="color: red;"></span>
+          <input type="password" placeholder="Repeat Password" name="repeat_password" id="repeat_password" required>
+          <hr>
+  
+          <button type="submit" class="registerbtn" >Register!</button>
+      </div>
+  
+      <div class="container signin">
+          
+      </div>
+      </form>
+  </body>
+  
+  </html>
+  <script>
+     
+  </script>

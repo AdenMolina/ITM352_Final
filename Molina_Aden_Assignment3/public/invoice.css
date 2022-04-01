@@ -1,0 +1,163 @@
+/* Author: Aden Molina*/
+/* This file is the stylesheet I used to style my shopping cart */ 
+
+
+.completePurchasediv {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  text-align: center;
+  font-family: 'Rubik', sans-serif;
+
+}
+
+input {
+text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Shipping Policy */
+.policy {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border: hidden;
+  font-family: 'Rubik', sans-serif;}
+
+/* Table for invoice */
+table {
+  background-color: rgba(255, 255, 255, 0.925);
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Rubik', sans-serif;}
+/* Image/Text Header */
+.hdrtxt {
+  background-color: rgba(255, 255, 255, 0.925);
+}
+
+/* Image header */
+.imghdr {
+  border-style: double;
+  border-width: 2px;
+}
+
+/* Quantity text box */
+.qtytxtbox {
+  text-align: center;
+  border-left: 1px;
+  border-right: 1px;
+  background-color: rgba(255, 255, 255, 0.37);
+}
+
+/* Total Items */
+.totalitms {
+  border-style: hidden;
+}
+/* General */
+
+/* Typography */   
+h1,h2,h3,h4 {
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+}
+
+/* Form styling */
+main {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    color: black;
+}    
+/* Styling the products display */
+.item img {
+    width: 300px;
+    height: auto;
+}
+
+/* Shadow when user hovers over item */
+.item:hover {
+  box-shadow: 0 0 5px 1px black;
+}
+
+
+/* Styling the increase and decrease buttons */
+/* Styling increase & decrease buttons from Mark Broomell https://codepen.io/mtbroomell/pen/yNwwdv */
+  .value-button {
+    display: inline-block;
+    border: 1px solid #ddd;
+    margin: 0px;
+    width: 40px;
+    height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 11px 0;
+    background: #eee;
+  }
+
+  /* Style the various products */
+  section {
+    width: 300%;
+    margin: 5px;
+    background-color: white;
+    height: auto;
+  }
+
+  input[type="button"] {
+    font-family: 'Rubik', sans-serif;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: .5px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    display: flex;
+    align-items: center;
+   justify-content: center;
+  }
+  input[type="button"]:hover {
+    font-family: 'Rubik', sans-serif;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    color: white;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+  }
+
+  input[type=submit] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    text-align: center;
+    box-sizing: border-box;
+    transition: all 0.4s ease;
+    font-family: 'Rubik', sans-serif;
+    transition: all 0.4s ease;
+    background: linear-gradient(-135deg, #aca688, #b67e59);
+  }
+  input[type=submit]:hover{
+    width: 100%;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    font-family: 'Rubik', sans-serif;
+    background: linear-gradient(-135deg, #b67e59, #aca688);
+  }
+
+  .moveButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+ 

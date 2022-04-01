@@ -1,0 +1,189 @@
+{ 
+    "Hawaiian":[
+    {
+        "album":"Kalapana (1975)",
+        "artist":"Kalapana",
+        "price":30, 
+        "image":"/images/kalapana.jpg",
+        "genre":"Hawaiian",
+        "quantity": 15
+        
+        
+    },
+    {
+        "album":"Dreams (2021)",
+        "artist":"Crossing Rain",
+        "price":50, 
+        "image":"/images/dreams.jpg",
+        "genre":"Hawaiian",
+        "quantity": 15
+        
+        
+    },
+    {
+        "album":"The Music of George Helm - A True Hawaiian (1996)",
+        "artist":"George Helm",
+        "price":30, 
+        "image":"/images/george.jpg",
+        "genre":"Hawaiian",
+        "quantity": 15
+        
+        
+    }, 
+    {
+        "album":"Goodtimes Together (1988)",
+        "artist":"Cecilio & Kapono",
+        "price":30, 
+        "image":"/images/goodtimes.jpg",
+        "genre":"Hawaiian",
+        "quantity": 15
+        
+        
+    }
+ 
+],
+    "Jazz Fusion":[
+        {
+            "album":"The Whispers: Greatest Hits (1987)",
+            "artist":"The Whispers",
+            "price":30, 
+            "image":"/images/whisper.jpg",
+            "genre":"JazzFusion",
+            "quantity": 15
+            
+            
+        },
+        {
+            "album":"An Insatiable High (1977)",
+            "artist":"Masayoshi Takanaka",
+            "price":30, 
+            "image":"/images/high.jpg",
+            "genre":"JazzFusion",
+            "quantity": 15
+            
+            
+        },
+        {
+            "album":"I Am (1979)",
+            "artist":"Earth, Wind & Fire",
+            "price":30, 
+            "image":"/images/ewf.jpg",
+            "genre":"JazzFusion",
+            "quantity": 15
+            
+            
+        },
+        {
+            "album":"Breezin' (1976)",
+            "artist":"George Benson",
+            "price":50, 
+            "image":"/images/breezin.jpg",
+            "genre":"JazzFusion",
+            "quantity": 15
+        },
+        {
+            "album":"Casiopea (1978)",
+            "artist":"Casiopea",
+            "price":20, 
+            "image":"/images/casiopea.jpg",
+            "genre":"JazzFusion",
+            "quantity": 15
+            
+            
+        }
+    ],
+    "Asia Pop": [
+        {
+            "album":"Just You and Me (1993)",
+            "artist":"Takeshi Kaneshiro",
+            "price":30, 
+            "image":"/images/Takeshi.jpg",
+            "genre":"AsiaPop",
+            "quantity": 15
+            
+            
+        }, 
+        {
+            "album":"Sabda Alam (1978)",
+            "artist":"Chrisye",
+            "price":30, 
+            "image":"/images/chrisye.jpg",
+            "genre":"AsiaPop",
+            "quantity": 15
+            
+            
+        }, 
+        {
+            "album":"BEGIN no Shimauta ~OMOTO TAKEO (2000)",
+            "artist":"Begin",
+            "price":30, 
+            "image":"/images/begin.jpg",
+            "genre":"AsiaPop",
+            "quantity": 15
+            
+            
+        }, 
+        {
+            "album":"in the memories of Leslie Cheung (2016)",
+            "artist":"Leslie Cheung",
+            "price":30, 
+            "image":"/images/leslie.jpg",
+            "genre":"AsiaPop",
+            "quantity": 15
+            
+            
+        },
+        {
+            "album":"Kurnia Dan Pesona (1979)",
+            "artist":"Fariz RM",
+            "price":25, 
+            "image":"/images/fariz.jpg",
+            "genre":"AsiaPop",
+            "quantity": 15
+            
+            
+        }
+    ],
+    "OPM":[
+        {
+            "album":"The Ultimate OPM Collection (2001)",
+            "artist":"The Boyfriends",
+            "price":30, 
+            "image":"/images/boyfriends.jpg",
+            "genre":"OPM",
+            "quantity": 15
+            
+            
+        }, 
+        {
+            "album":"Love Fusion (1981)",
+            "artist":"Boy Katindig",
+            "price":30, 
+            "image":"/images/love.jpg",
+            "genre":"OPM",
+            "quantity": 15
+            
+            
+        }, 
+        {
+            "album":"Bagong Plaka,Lumang Kanta, Vol.2 (1988)",
+            "artist":"Celeste Legaspi",
+            "price":30, 
+            "image":"/images/legaspi.jpg",
+            "genre":"OPM",
+            "quantity": 15
+            
+            
+        }, 
+        {
+            "album":"Circus (1994)",
+            "artist":"Eraserheads",
+            "price":30, 
+            "image":"/images/eraserheads.png",
+            "genre":"OPM",
+            "quantity": 15
+            
+            
+        }
+    ]
+}
