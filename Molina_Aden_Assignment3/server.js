@@ -116,8 +116,6 @@ app.post("/update_cart", function (request,response) {
     } else { // if there are no errors, update cart
         msg = "Cart successfully updated!";
         request.session.cart = request.body.quantities;
-        Number(qty) -= products[i].quantity ;
-        console.log(Number(qty));
     }
     var ref_URL = new URL(request.get('Referrer'));
     ref_URL.searchParams.set("msg", msg); // get qs and add to qs
